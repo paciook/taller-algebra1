@@ -3,11 +3,9 @@
  -  contrario. -}
 satisfaceCollatz :: Integer -> Integer -> Bool
 satisfaceCollatz 1 _ = True
-satisfaceCollatz _ 1 = False {- Cuando m == 1 devuelvo False ya que el problema
-                                indica que tienen que ser MENOS de m pasos -}
+satisfaceCollatz _ 1 = False 
 satisfaceCollatz n m | mod n 2 == 0 = satisfaceCollatz (div n 2) (m-1)
                      | otherwise = satisfaceCollatz (3*n + 1) (m-1)
-
 
 {-  Dados dos números naturales n y m devuelve True si todos los números
  -  naturales desde 1 hasta n satisfacen la conjetura de Collatz en menos de
@@ -37,6 +35,7 @@ largoSecuencia n | mod n 2 == 0 = 1 + largoSecuencia (div n 2)
  -  que genera la secuencia más larga de pasos desde a1 = m hasta llegar a 1.-}
 secuenciaMasLargaHasta :: Integer -> Integer
 secuenciaMasLargaHasta 1 = 1
-secuenciaMasLargaHasta n | (largoSecuencia n > largoSecuencia anterior) = n
+secuenciaMasLargaHasta n | largoSecuencia n > largoSecuencia anterior = n
                          | otherwise = anterior
                          where anterior = secuenciaMasLargaHasta (n-1)
+
