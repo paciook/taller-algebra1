@@ -23,6 +23,16 @@ suma [] p2 = p2
 suma p1 [] = p1
 suma p1 p2 = (suma (init p1) (init p2)) ++ [(last p1) + (last p2)]
 
+sumaCorrecta :: Polinomio -> Polinomio -> Polinomio
+sumaCorrecta [] p2 = p2
+sumaCorrecta p1 [] = p1
+sumaCorrecta p1 p2 | grado p1 == grado p2 = (x + y) : subsuma
+                   | grado p1 > grado p2 = x : sumaCorrecta (tail p1) p2
+                   | otherwise = sumaCorrecta p2 p1
+                   where x = head p1
+                         y = head p2
+                         subsuma = sumaCorrecta (tail p1) (tail p2)
+
 producto :: Polinomio -> Polinomio -> Polinomio
 producto [] p = []
 producto (x:xs) p = suma (productoPorMonomio (x,grado (x:xs)) p) (producto xs p)
