@@ -38,7 +38,7 @@ mezcla :: (Ord a, Eq a) => a -> Set (Set a) -> Set (Set a)
 mezcla _ [] = []
 mezcla n (x:xs) = (agregar n x) : (mezcla n xs)
 
-partes :: (Num a,Eq a, Ord a) => a -> Set (Set a)
+partes :: (Num a, Eq a, Ord a) => a -> Set (Set a)
 partes 0 = [[]]
 partes n = union (mezcla n (partes (n-1))) (partes (n-1))
 
